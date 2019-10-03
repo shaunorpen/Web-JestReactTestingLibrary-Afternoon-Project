@@ -16,8 +16,8 @@ describe('Counter component', () => {
   });
 
   it('shows the correct user', () => {
-    const elementWithJoshText = tools.queryByText(/peter/i);
-    expect(elementWithJoshText).toBeInTheDocument();
+    const elementWithNameText = tools.queryByText(/peter/i);
+    expect(elementWithNameText).toBeInTheDocument();
   });
 
   it('initial count is zero', () => {
