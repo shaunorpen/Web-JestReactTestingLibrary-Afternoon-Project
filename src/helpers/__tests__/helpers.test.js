@@ -18,12 +18,14 @@ describe('sum', () => {
     expect(helpers.sum(-1, -1)).toBe(-2);
   });
   it('throws if fed something which is not a number', () => {
-    expect(() => helpers.sum('1', '2')).toThrow();
+    expect(() => helpers.sum(1, '2')).toThrow('I want numbers');
   });
   it('can add three positive numbers', () => {
     expect(helpers.sum(1, 2, 3)).toBe(6);
-    expect(helpers.sum(1, 2, 3)).not.toBe(7);
   });
+  it('can add three negative numbers', () => {
+    expect(helpers.sum(-1, -2, -3)).toBe(-6);
+  })
 });
 
 describe('multiply', () => {
