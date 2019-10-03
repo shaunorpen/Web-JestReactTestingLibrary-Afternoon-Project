@@ -70,16 +70,34 @@ describe('Counter component', () => {
     rtl.fireEvent.click(incButton);
     expect(tools.queryByText(/5/)).toBeInTheDocument();
     rtl.fireEvent.click(incButton);
-    expect(tools.queryByText(/high/)).toBeInTheDocument();
+    expect(tools.queryByText(/5/)).toBeInTheDocument();
 
   });
 
   it('prevents the count from going under a lower limit', () => {
-    // implement
+    const decButton = tools.queryByTestId('decButton');
+
+    let n = 0;
+
+    while (n < 10) {
+      rtl.fireEvent.click(decButton);
+      n++;
+    }
+
+    expect(tools.queryByText(/5/)).toBeInTheDocument();
   });
 
   it('shows a warning once we hit the upper limit of the counter', () => {
-    // implement
+    const incButton = tools.queryByTestId('incButton');
+
+    let n = 0;
+
+    while (n < 10) {
+      rtl.fireEvent.click(incButton);
+      n++;
+    }
+
+    expect(tools.queryByText(/high/)).toBeInTheDocument();
   });
 
   it('shows a warning once we hit the lower limit of the counter', () => {
