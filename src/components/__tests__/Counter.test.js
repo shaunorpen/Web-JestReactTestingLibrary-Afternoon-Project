@@ -101,6 +101,15 @@ describe('Counter component', () => {
   });
 
   it('shows a warning once we hit the lower limit of the counter', () => {
-    // implement
+    const decButton = tools.queryByTestId('decButton');
+
+    let n = 0;
+
+    while (n < 10) {
+      rtl.fireEvent.click(decButton);
+      n++;
+    }
+
+    expect(tools.queryByText(/low/)).toBeInTheDocument();
   });
 });
