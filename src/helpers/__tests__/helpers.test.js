@@ -66,3 +66,21 @@ describe('personMaker', () => {
     expect(person.name).toMatch(/[a-zA-Z]*/);
   });
 });
+
+describe('objectToArray', () => {
+  test('only accepts objects as input', () => {
+    expect(() => helpers.objectToArray(1)).toThrow('Can only accept objects as input');
+    expect(() => helpers.objectToArray('a')).toThrow('Can only accept objects as input');
+    expect(() => helpers.objectToArray(false)).toThrow('Can only accept objects as input');
+    expect(() => helpers.objectToArray(null)).toThrow('Can only accept objects as input');
+  })
+  test('empty object returns empty array', () => {
+    expect(helpers.objectToArray({})).toEqual([]);
+  })
+  test('object returns array', () => {
+    expect(helpers.objectToArray({ name: 'Shaun', age: 37 })).toEqual([['name', 'Shaun'], ['age', 37]]);
+  })
+  test('nested object returns nested array', () => {
+    expect(helpers.objectToArray({ person: {name: 'Shaun', age: 37} })).toEqual([[ 'person', {name: 'Shaun', age: 37} ]]);
+  })
+})

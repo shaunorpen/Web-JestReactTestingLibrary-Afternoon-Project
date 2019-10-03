@@ -32,4 +32,15 @@ export function personMaker(name, age) {
   };
 }
 
-// BUILD YOUR OWN UTILITY FUNCTIONS AND TEST THEM OUT!
+export function objectToArray(obj) {
+  if (typeof(obj) !== 'object' || obj === null) 
+    throw new Error('Can only accept objects as input');
+  
+  let result = [];
+
+  Object.keys(obj).map(key => {
+    result.push( [ key, obj[key] ] )
+  });
+  
+  return result;
+}
