@@ -46,15 +46,23 @@ describe('multiply', () => {
   });
 });
 
+const person = helpers.personMaker('peter', 4);
+
 describe('personMaker', () => {
   it('makes a person with name and age', () => {
-    expect(helpers.personMaker('peter', 4))
+    expect(person)
       .toMatchObject({
         id: '123',
         name: 'peter',
         age: 4,
       });
+    });
+  test('age is positive and less than 121', () => {
+    expect(person.age).toBeGreaterThanOrEqual(0);
+    expect(person.age).toBeLessThan(121);
   });
-
-  // write more tests! <===========================================
+  test('name is a reasonable length and contains only alpha characters', () => {
+    expect(person.name).toMatch(/^\S{3,20}$/);
+    expect(person.name).toMatch(/[a-zA-Z]*/);
+  });
 });
