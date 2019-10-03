@@ -39,7 +39,7 @@ export function objectToArray(obj) {
   let result = [];
 
   Object.keys(obj).map(key => {
-    result.push( [ key, obj[key] ] )
+    return result.push( [ key, obj[key] ] )
   });
   
   return result;
