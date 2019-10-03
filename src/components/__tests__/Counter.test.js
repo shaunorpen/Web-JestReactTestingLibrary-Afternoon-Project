@@ -7,13 +7,13 @@ let tools;
 
 beforeEach(() => {
   rtl.cleanup();
-  tools = rtl.render(<Counter user='Peter' />);
+  tools = rtl.render(<Counter user='Peter' countLimit={5} />);
 });
 
 describe('Counter component', () => {
-  it('can debug the output', () => {
-    tools.debug();
-  });
+  // it('can debug the output', () => {
+  //   tools.debug();
+  // });
 
   it('shows the correct user', () => {
     const elementWithNameText = tools.queryByText(/peter/i);
@@ -57,7 +57,21 @@ describe('Counter component', () => {
   });
 
   it('prevents the count from going over an upper limit', () => {
-    // implement
+    const incButton = tools.queryByTestId('incButton');
+
+    rtl.fireEvent.click(incButton);
+    expect(tools.queryByText(/1/)).toBeInTheDocument();
+    rtl.fireEvent.click(incButton);
+    expect(tools.queryByText(/2/)).toBeInTheDocument();
+    rtl.fireEvent.click(incButton);
+    expect(tools.queryByText(/3/)).toBeInTheDocument();
+    rtl.fireEvent.click(incButton);
+    expect(tools.queryByText(/4/)).toBeInTheDocument();
+    rtl.fireEvent.click(incButton);
+    expect(tools.queryByText(/5/)).toBeInTheDocument();
+    rtl.fireEvent.click(incButton);
+    expect(tools.queryByText(/high/)).toBeInTheDocument();
+
   });
 
   it('prevents the count from going under a lower limit', () => {
