@@ -25,11 +25,25 @@ describe('sum', () => {
   });
   it('can add three negative numbers', () => {
     expect(helpers.sum(-1, -2, -3)).toBe(-6);
-  })
+  });
 });
 
 describe('multiply', () => {
-  // write tests! <================================================
+  it('throws an error if either or both inputs are not numbers', () => {
+    expect(() => helpers.multiply('a', 1)).toThrow();
+    expect(() => helpers.multiply(1, 'a')).toThrow();
+    expect(() => helpers.multiply('a', 'b')).toThrow();
+  });
+  it('correctly multiplies positive numbers', () => {
+    expect(helpers.multiply(1, 1)).toBe(1);
+    expect(helpers.multiply(1, 2)).toBe(2);
+    expect(helpers.multiply(2, 3)).toBe(6);
+  });
+  it('correctly multiplies negative numbers', () => {
+    expect(helpers.multiply(1, -1)).toBe(-1);
+    expect(helpers.multiply(1, -2)).toBe(-2);
+    expect(helpers.multiply(-2, -3)).toBe(6);
+  });
 });
 
 describe('personMaker', () => {
